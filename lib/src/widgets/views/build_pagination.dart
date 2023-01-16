@@ -5,6 +5,8 @@ import 'package:firebase_pagination/src/models/wrap_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../../firebase_pagination.dart';
+
 /// A [ScrollView] to use for the provided [items].
 ///
 /// The [items] are loaded into the [ScrollView] based on the [viewType].
@@ -53,7 +55,7 @@ class BuildPagination<T> extends StatelessWidget {
   final Widget bottomLoader;
 
   /// The delegate to use for the [GridView].
-  final SliverSimpleGridDelegate gridDelegate;
+  final SimpleGridDelegate gridDelegate;
 
   /// The options to use for the [Wrap].
   final WrapOptions wrapOptions;

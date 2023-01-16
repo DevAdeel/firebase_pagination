@@ -6,9 +6,9 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // Functions
+import '../firebase_pagination.dart';
 import 'functions/separator_builder.dart';
 // Data Models
 import 'models/view_type.dart';
@@ -47,7 +47,7 @@ class RealtimeDBPagination extends StatefulWidget {
     this.limit = 10,
     this.viewType = ViewType.list,
     this.isLive = false,
-    this.gridDelegate = const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+    this.gridDelegate = const SimpleGridDelegate(
       crossAxisCount: 2,
     ),
     this.wrapOptions = const WrapOptions(),
@@ -113,8 +113,8 @@ class RealtimeDBPagination extends StatefulWidget {
 
   /// The delegate to use for the [GridView].
   ///
-  /// Defaults to [SliverGridDelegateWithFixedCrossAxisCount].
-  final SliverSimpleGridDelegate gridDelegate;
+  /// Defaults to [SimpleGridDelegate].
+  final SimpleGridDelegate gridDelegate;
 
   /// The [Wrap] widget properties to use.
   ///

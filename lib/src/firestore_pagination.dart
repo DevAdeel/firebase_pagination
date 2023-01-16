@@ -6,9 +6,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // Functions
+import '../firebase_pagination.dart';
 import 'functions/separator_builder.dart';
 // Data Models
 import 'models/view_type.dart';
@@ -46,7 +46,7 @@ class FirestorePagination extends StatefulWidget {
     this.limit = 10,
     this.viewType = ViewType.list,
     this.isLive = false,
-    this.gridDelegate = const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+    this.gridDelegate = const SimpleGridDelegate(
       crossAxisCount: 2,
     ),
     this.wrapOptions = const WrapOptions(),
@@ -99,7 +99,7 @@ class FirestorePagination extends StatefulWidget {
   /// The delegate to use for the [GridView].
   ///
   /// Defaults to [SliverGridDelegateWithFixedCrossAxisCount].
-  final SliverSimpleGridDelegate gridDelegate;
+  final SimpleGridDelegate gridDelegate;
 
   /// The [Wrap] widget properties to use.
   ///

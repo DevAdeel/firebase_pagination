@@ -1,25 +1,23 @@
 // Flutter Packages
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-
 // Dart Packages
 import 'dart:async';
 
 // Firebase Packages
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+// Functions
+import 'functions/separator_builder.dart';
 // Data Models
 import 'models/view_type.dart';
 import 'models/wrap_options.dart';
-
 // Widgets
 import 'widgets/defaults/bottom_loader.dart';
 import 'widgets/defaults/empty_screen.dart';
 import 'widgets/defaults/initial_loader.dart';
 import 'widgets/views/build_pagination.dart';
-
-// Functions
-import 'functions/separator_builder.dart';
 
 /// A [StreamBuilder] that automatically loads more data when the user scrolls
 /// to the bottom.
@@ -49,7 +47,7 @@ class RealtimeDBPagination extends StatefulWidget {
     this.limit = 10,
     this.viewType = ViewType.list,
     this.isLive = false,
-    this.gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
+    this.gridDelegate = const SliverSimpleGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
     ),
     this.wrapOptions = const WrapOptions(),
@@ -116,7 +114,7 @@ class RealtimeDBPagination extends StatefulWidget {
   /// The delegate to use for the [GridView].
   ///
   /// Defaults to [SliverGridDelegateWithFixedCrossAxisCount].
-  final SliverGridDelegate gridDelegate;
+  final SliverSimpleGridDelegate gridDelegate;
 
   /// The [Wrap] widget properties to use.
   ///

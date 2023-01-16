@@ -1,9 +1,9 @@
 // Flutter Packages
-import 'package:flutter/material.dart';
-
 // Data Models
 import 'package:firebase_pagination/src/models/view_type.dart';
 import 'package:firebase_pagination/src/models/wrap_options.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 /// A [ScrollView] to use for the provided [items].
 ///
@@ -53,7 +53,7 @@ class BuildPagination<T> extends StatelessWidget {
   final Widget bottomLoader;
 
   /// The delegate to use for the [GridView].
-  final SliverGridDelegate gridDelegate;
+  final SliverSimpleGridDelegate gridDelegate;
 
   /// The options to use for the [Wrap].
   final WrapOptions wrapOptions;
@@ -97,11 +97,12 @@ class BuildPagination<T> extends StatelessWidget {
         );
 
       case ViewType.grid:
-        return GridView.builder(
-          scrollDirection: scrollDirection,
+        return AlignedGridView.custom(
+          gridDelegate: gridDelegate,
           reverse: reverse,
           controller: controller,
           physics: physics,
+          scrollDirection: scrollDirection,
           shrinkWrap: shrinkWrap,
           padding: padding,
           itemCount: items.length + (isLoading ? 1 : 0),
@@ -110,8 +111,22 @@ class BuildPagination<T> extends StatelessWidget {
 
             return itemBuilder(context, items[index], index);
           },
-          gridDelegate: gridDelegate,
         );
+      // return GridView.builder(
+      //   scrollDirection: scrollDirection,
+      //   reverse: reverse,
+      //   controller: controller,
+      //   physics: physics,
+      //   shrinkWrap: shrinkWrap,
+      //   padding: padding,
+      //   itemCount: items.length + (isLoading ? 1 : 0),
+      //   itemBuilder: (BuildContext context, int index) {
+      //     if (index >= items.length) return bottomLoader;
+      //
+      //     return itemBuilder(context, items[index], index);
+      //   },
+      //   gridDelegate: gridDelegate,
+      // );
 
       case ViewType.wrap:
         return SingleChildScrollView(
